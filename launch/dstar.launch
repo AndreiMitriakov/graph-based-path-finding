@@ -1,0 +1,21 @@
+<launch>
+	<node pkg="map_server" type="map_server" name="map_input" args="$(find d_star_lite)/data/kth_y2_floorsix_full.yaml" />
+
+        <!-- Setting the initial state cell from where the dstar Motion Planner will start -->
+        <arg name="initial_state" value="(110,85)" /> <!-- "(490,470)" "(460,460)" "(490,470)" -->
+
+        <!-- Setting the goal state cell where the dstar Motion Planner should arrive -->
+        <arg name="goal_state" value="(100,120)" /> <!-- "(493,490)" "(550,500)" "(466,471)"-->
+
+        <!-- Setting the neighborhood state distance threshold -->
+        <arg name="neigh_connect" value="2" /> <!-- Put value="2" for full connected neighborhood -->
+
+        <!-- Running ROS rviz visualization tool -->
+	<node pkg="rviz" type="rviz" name="rviz_node" output="screen" required="true" args="-d $(find d_star_lite)/config/slides.rviz"  />
+
+        <!-- Starting a static transform publisher from world to map so that the /map coordinate frame can be anchored -->
+        <node pkg="tf" type="static_transform_publisher" name="anchoring" args="0 0 0 0 0 0 1 world map 10" />
+
+        <!-- Running the D* Motion Planner 
+	<node pkg="d_star_lite" type="d_star_lite.py" name="dsl" output="screen" args="$(arg initial_state) $(arg goal_state) $(arg neigh_connect)" /> -->
+</launch>
