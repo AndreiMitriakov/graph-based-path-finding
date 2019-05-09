@@ -21,6 +21,7 @@ class Node:
         self.prob = prob
         self.rhs = rhs
         self.g = g
+	self.pred= None
 
     def getHeuristic(self, goal = None):
 	if goal == None:
@@ -43,6 +44,8 @@ class DStarLite:
         self.graph[self.start.w][self.start.h].rhs = 0
         node_start = self.graph[self.start.w][self.start.h]
         priority = self.calculate_key(node_start)
+	# predcessor is not defined because this is the start node
+	node_start.pred = (np.nan, np.nan)
         self.queue.insert(node_start, priority)
         
     def calculate_key(self, node):
