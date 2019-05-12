@@ -18,9 +18,15 @@ class PriorityQueue:
         if self.queue == []:
             return np.inf
         else:
-            return self.queue[0]
+            return self.queue[0].priority
 
-        
+
+    def print_queue(self):
+        print('Nodes in queue')
+        for el in self.queue:
+            print(el.id, el.priority)
+
+
     def pop(self):
         '''
         removes the node with the lowest priority from the queue and returns it
@@ -28,10 +34,7 @@ class PriorityQueue:
         if len(self.queue) == 0:
             return False
         else:
-            node = self.queue[0]
-            self.queue.pop()
-            # node = self.queue.pop(index)
-            return node 
+            return self.queue.pop(0)
 
     def _sort(self):
         self.queue = sorted(self.queue, key=lambda node: (node.priority[0], node.priority[1]))
