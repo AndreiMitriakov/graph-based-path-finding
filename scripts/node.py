@@ -52,8 +52,10 @@ class Node:
         Estimates cost from the predecessor node (self) to the current one (node).
         It is acceptable to say that the cost is 0 between two node.
         '''
-        # 1.0 distance in pixels travelled to a close node
+        # 1.0 distance in pixels to  close nodes
         if node.prob == 100:
             return np.inf
-        elif node.prob == 0:
+        elif node.prob == -1:
+            return np.inf
+        else:
             return ((self.w-node.w)**2+(self.h-node.h)**2)**0.5
