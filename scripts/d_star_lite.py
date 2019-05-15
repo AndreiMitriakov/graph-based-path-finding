@@ -8,7 +8,6 @@ import copy
 from nav_msgs.msg import OccupancyGrid
 from queue import PriorityQueue
 from node import Node
-from map_msgs.msg import OccupancyGridUpdate
 from geometry_msgs.msg import PointStamped
 from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
@@ -28,24 +27,20 @@ class LPAstar:
 
     def __init__(self):
         self.position = collections.namedtuple('Position', 'w h')
-        self.obstacle = collections.namedtuple('Obstacle', 'w h height')
         # Finally, it should be defined in getter methods
         self.start = None
         self.goal = None
-        self.obst = None
-        self.map_update = OccupancyGridUpdate()
         self.queue = PriorityQueue()
         self.directed_graph = []    
         # Map in undirected graph form, defined latter
         self.graph = None
         self.pnts = 0
         # Map in 2d
-        self.map = None
-        self.new_map = None
+        self.map = OccupancyGrid()
+        self.map_prev = OccupancyGrid()
         self.path = []
         self.marker_array = MarkerArray()
         self.pub_markers = rospy.Publisher('/markers', MarkerArray, queue_size=10)
-        self.pub_map_updates = rospy.Publisher('/map_updates', OccupancyGridUpdate, queue_size=10)
         self.mid = 0
         self.color = {'start': ColorRGBA(0, 1, 0, 1), 'goal': ColorRGBA(1, 0, 0, 1), 'usual': ColorRGBA(0, 0, 1, 1),
                       'current': ColorRGBA(0.5, 0, 0.5, 1), 'path': ColorRGBA(0, 0.5, 0.5, 1)}
@@ -86,65 +81,58 @@ class LPAstar:
         Implementation of Main() from LPA* 
         '''
         self.initialize()
+        i = 0
         while True:
             self.compute_shortest_path()
             path = self.get_path()
-            time.sleep(1)
-            self.add_obstacle()
-            self.redefine_costs()
-            break
+            # In future, update_map has to be called only after new map receiving
+            # A while loop should be implemented exiting from itself when dsl.process_map callback called
+            # while self.nothing_new:
+            #   time.sleep(1)
+            # self.nothing_new = True # self.nothing_new = False in dsl.process_map()
+            changed_nodes = self.update_map() # to delete
+            while self.map_prev.header.stamp.secs == self.map.header.stamp.secs:
+                time.sleep(1)
+            self.update_map()
+            # Changed nodes consist of nodes around appeared obstacle.
+            # Nodes located in the place of new obstacle are dropped from markers and not updated
+            # If obstacle disappears map is updated nodes around obstacle are also added to be updated.
+            for node in changed_nodes:
+                self.update_node(node)
+            i += 1
+            self.map_prev = copy.deepcopy(self.map)
 
-    def redefine_costs(self):
+    def update_map(self):
         '''
-
+        Compares two maps in order to find changed traversal costs.
+        :param map_new: new map
+        :param map_old: old map
+        :return: list of changed nodes
         '''
-        xo = min(self.obst1.w, self.obst2.w)
-        yo = min(self.obst1.h, self.obst2.h)
-        width = abs(self.obst1.w - self.obst2.w)
-        height = abs(self.obst1.h - self.obst2.h)
-        markers_id = [mrk.id for mrk in self.marker_array.markers]
-        # Find markers that are not
-        for i in range(width * height):
-            self.graph[xo+width][yo+height].prob = 100
-            for marker_index, marker in enumerate(self.marker_array.markers):
-                if self.graph[xo+width][yo+height].id == marker.id:
-                    self.marker_array.markers[marker_index] = 2
-        self.pub_markers.publish(self.marker_array)
-        # Define touched nodes needed to be updated
-        self.nodes_to_update = []
-        for i in range(height + 2):
-            node_left = self.graph[xo-1][yo + i - 1]
-            node_right = self.graph[xo + width + 1][yo + i - 1]
-            if node_left.id in markers_id:
-                self.nodes_to_update.append(node_left)
-            if node_right.id in markers_id:
-                self.nodes_to_update.append(node_right)
-        for i in range(width):
-            node_bot = self.graph[xo + i][yo]
-            node_top = self.graph[xo + i][yo + height]
-            if node_bot.id in markers_id:
-                self.nodes_to_update.append(node_bot)
-            if node_top.id in markers_id:
-                self.nodes_to_update.append(node_top)
-
-    def add_obstacle(self):
-        '''
-        Calculates obstacle line based on two points self.obst1 and self.obst2.
-        '''
-        self.map_update.header.seq = 0
-        self.map_update.header.stamp = rospy.Time.now()
-        self.map_update.header.frame_id = self.map.header.frame_id
-        self.map_update.x = self.obst.w
-        self.map_update.y = self.obst.h
-        self.map_update.width = 1
-        self.map_update.height = self.obst.height
-        self.map_update.data = []
-        for x in range(self.map_update.width*self.map_update.height):
-            self.map_update.data.append(100)
-        self.map_update.data = tuple(self.map_update.data)
-        self.pub_map_updates.publish(self.map_update)
-        self.map = rospy.ServiceProxy('static_map', GetMap)().map
-
+        changed_nodes = [(i, prob) for i, prob in enumerate(self.map.data) if self.map_prev.data[i] != self.map.data[i]]
+        for i in range(len(self.map.data)):
+            if self.map_prev.data[i] != self.map.data[i]:
+                print('NOT EQUAL')
+        nodes = []
+        contains = lambda marker, w, h: marker.position.x == w * self.map.info.resolution and \
+                                        marker.position.y == h * self.map.info.resolution
+        for index, prob in changed_nodes:
+            h = int(index / self.map.info.width)
+            w = index - h * self.map.info.width
+            node = self.graph[w][h]
+            # Update graph
+            node.prob = prob
+            # Pop all touched nodes from marker list
+            for i, marker in enumerate(self.marker_array.markers):
+                if contains(marker):
+                    self.marker_array.markers.pop(i)
+            # Form a list of nodes to be updated, these are nodes around obstacle
+            if node not in nodes:
+                nodes.append(node)
+                for succ in node.get_successors():
+                    if succ not in nodes:
+                        nodes.append(succ)
+        return nodes
 
     def compute_shortest_path(self):
         goal_node = self.graph[self.goal.w][self.goal.h]
@@ -167,6 +155,10 @@ class LPAstar:
 
     def change_color(self, node, clr):
         for marker in self.marker_array.markers:
+            print '******'
+            print node
+            print '------'
+            print marker
             if node.id == marker.id:
                 marker.color = self.color[clr]
 
@@ -210,15 +202,18 @@ class LPAstar:
         '''
         Callback function for map published message
         '''
-        self.map = map_
-        self.start = self.position(w=int(self.map.info.width * 0.34), h=int(self.map.info.height * 0.43))
-        self.goal = self.position(w=int(self.map.info.width * 0.5), h=int(self.map.info.height * 0.43))
-        self.obst = self.obstacle(w=int(self.map.info.width * 0.42), h=int(self.map.info.height * 0.43),
-                                  height=int(self.map.info.height * 0.07))
-        self.graph = self.prepare_map(map_)
-        self.start_node = self.graph[self.start.w][self.start.h]
-        self.goal_node = self.graph[self.goal.w][self.goal.h]
-        self.calculate_path()
+        if len(self.map.data) == 0:
+            self.map = map_
+            self.map_prev = copy.deepcopy(map_)
+            self.start = self.position(w=int(self.map.info.width * 0.41), h=int(self.map.info.height * 0.49))
+            self.goal = self.position(w=int(self.map.info.width * 0.44), h=int(self.map.info.height * 0.51))
+            self.graph = self.prepare_map(map_)
+            self.start_node = self.graph[self.start.w][self.start.h]
+            self.goal_node = self.graph[self.goal.w][self.goal.h]
+            self.calculate_path()
+        else:
+            self.map = map_
+            self.calculate_path()
         path = None
         return path
 
@@ -244,13 +239,13 @@ class LPAstar:
             mk.pose.orientation.z = 0
             mk.pose.orientation.w = 1
             mk.scale = Vector3(self.map.info.resolution * 2, self.map.info.resolution * 2, self.map.info.resolution * 2)
-            mk.lifetime = rospy.Duration(5)
+            mk.lifetime = rospy.Duration(15)
             mk.color = self.color[type]
             self.marker_array.markers.append(mk)
 
 
 if __name__ == '__main__':
-    # Forward LPA* Search
+    '''Forward LPA* Search'''
     dsl = LPAstar()
     rospy.init_node('LPAstar', anonymous=True)
     path = rospy.Subscriber('/map', OccupancyGrid, dsl.process_map)
