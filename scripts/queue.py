@@ -4,7 +4,7 @@ import numpy as np
 class PriorityQueue:
 
     # Data structure for path finding search algorithms
-    
+
     def __init__(self):
         self.queue = []
 
@@ -20,12 +20,10 @@ class PriorityQueue:
         else:
             return self.queue[0].priority
 
-
     def print_queue(self):
         print('Nodes in queue')
         for el in self.queue:
             print(el.id, el.priority)
-
 
     def pop(self):
         '''
@@ -52,7 +50,7 @@ class PriorityQueue:
         removes a node from the queue
         '''
         # To improve
-        for i, node_q in enumerate(self.queue): 
+        for i, node_q in enumerate(self.queue):
             if node == node_q:
                 self.queue.pop(i)
                 break

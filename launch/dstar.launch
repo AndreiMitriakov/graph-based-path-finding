@@ -1,5 +1,5 @@
 <launch>
-	<node pkg="map_server" type="map_server" name="map_input" args="$(find d_star_lite)/data/kth_y2_floorsix_full.yaml" />
+	<node pkg="map_server" type="map_server" name="map_input" args="vide.yaml" />
 
         <!-- Setting the initial state cell from where the dstar Motion Planner will start -->
         <arg name="initial_state" value="(110,85)" /> <!-- "(490,470)" "(460,460)" "(490,470)" -->

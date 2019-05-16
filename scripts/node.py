@@ -31,12 +31,14 @@ class Node:
         Return successor nodes.
         Append the current node as a parent to successor nodes.
         '''
+        i = 0
         if self.succ_set == False:
             for step in self.steps:
                 node = graph[self.w + step[0]][self.h + step[1]]
+                i += 1
+                self.succ.append(node)
+                # Add self node as the predecessor to the current successor node
                 if node not in self.pred:
-                    self.succ.append(node)
-                    # Add self node as the predecessor to the current successor node
                     node.pred.append(self)
             self.succ_set = True
             return self.succ
