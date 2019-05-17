@@ -217,10 +217,10 @@ class LPAstar:
         if self.nmb_received_maps == 0:
             self.map = map_
             self.map_prev = copy.deepcopy(map_)
-            self.start = self.position(w=int(self.map.info.width * 0.35), h=int(self.map.info.height * 0.49K))
+            self.start = self.position(w=int(self.map.info.width * 0.35), h=int(self.map.info.height * 0.49))
             self.goal = self.position(w=int(self.map.info.width * 0.5), h=int(self.map.info.height * 0.49))
             self.graph = self.prepare_map(map_)
-            self.start_node = self.graph[self.start.w][self.start.h]
+            self.start_node = self.graph[self.start.w][self.start.h]K
             self.goal_node = self.graph[self.goal.w][self.goal.h]
             self.nmb_received_maps = 1
             self.calculate_path()
