@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a51cf053-3280-4124-9479-8237c0d2724e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/kth_y2_floorsix_full.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/data/vide.pgm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/kth_y2_floorsix_full.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/vide.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/launch/dstar.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/dstar.launch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/d_star_lite.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/d_star_lite.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/node.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/include/python2.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/encodings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/lib-dynload" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +17,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="d_star_lite" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/d_star_lite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="126" column="18" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="18" />
+            <state relative-caret-position="245">
+              <caret line="219" column="107" selection-start-line="219" selection-start-column="107" selection-end-line="219" selection-end-column="107" />
               <folding>
                 <element signature="e#47#65#0" expanded="true" />
               </folding>
@@ -31,46 +35,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="764" selection-start-line="764" selection-end-line="764" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/impl/tcpros_base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="800" column="35" lean-forward="true" selection-start-line="800" selection-start-column="35" selection-end-line="800" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/queue.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+            <state relative-caret-position="230">
+              <caret line="22" column="13" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vide.yaml">
+        <entry file="file://$PROJECT_DIR$/scripts/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" selection-start-column="11" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/full.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" selection-start-column="11" selection-end-column="11" />
+            <state relative-caret-position="347">
+              <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -86,36 +63,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NOT EQUAL</find>
-      <find>er, w, h: marker.position.x == w * self.map.info.r</find>
-      <find>in node.get_successors</find>
-      <find>if node.id == marker.id:</find>
-      <find>insert</find>
-      <find>if node.id == marker.id</find>
-      <find>change_color</find>
-      <find>self.queue.insert</find>
-      <find>calculate_path</find>
-      <find>111</find>
-      <find>f.marker_array.markers.self.color = self.color['</find>
-      <find>self.update_node(node</find>
-      <find>f node.id == marker.i</find>
-      <find>update_node</find>
+      <find>turn</find>
+      <find>turn_off_mrks</find>
+      <find>comor</find>
       <find>process_map</find>
-      <find>initialize</find>
-      <find>self.map_prev</find>
-      <find>self.pub_markers</find>
-      <find>self.marker_array.markers</find>
-      <find>node = prob_nodes[0]</find>
-      <find>len(pro</find>
-      <find>add_marker</find>
-      <find>markers</find>
-      <find>get_predecessors</find>
-      <find>'start'</find>
-      <find>self.color</find>
-      <find>get_path</find>
-      <find>start</find>
-      <find>self.start</find>
+      <find>self.nmb_received_maps</find>
+      <find>th iteration of main l</find>
+      <find>calculate_path</find>
+      <find>waiting</find>
+      <find>print self</find>
+      <find>nmb_received_maps</find>
+      <find>iteration of main loop</find>
       <find>update_map</find>
+      <find>compute_shortest_path</find>
+      <find>shortest</find>
+      <find>goal_node</find>
+      <find>self.goal_node</find>
+      <find>compute</find>
+      <find>sleep(</find>
+      <find>Node(</find>
+      <find>insert</find>
+      <find>node_set_ps</find>
+      <find>node.id == marker.id</find>
+      <find>change_color</find>
+      <find>node(</find>
+      <find>ode.id == marke</find>
+      <find>update_node</find>
+      <find>set_ps</find>
+      <find>self.goal</find>
+      <find>print</find>
+      <find>goal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,9 +111,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2051" />
+    <option name="x" value="1349" />
     <option name="y" value="-4" />
-    <option name="width" value="1621" />
+    <option name="width" value="1619" />
     <option name="height" value="1054" />
   </component>
   <component name="ProjectView">
@@ -241,27 +218,43 @@
       <option name="project" value="LOCAL" />
       <updated>1557848499547</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="A lot of changes added, main current issue, is that there are no investigation after obstacle adding">
+      <created>1558023393187</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558023393188</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="1978" y="-4" width="1623" height="1055" extended-state="6" />
+    <frame x="1979" y="-4" width="1621" height="1054" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17021276" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65891474" visible="true" weight="0.17021276" />
+      <window_info id="Structure" order="1" sideWeight="0.34108528" side_tool="true" visible="true" weight="0.17021276" />
+      <window_info id="Favorites" order="2" sideWeight="0.34136546" side_tool="true" weight="0.17021276" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18611987" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.24921136" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32831" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993742" weight="0.20609884" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3280757" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.2681388" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006258" side_tool="true" weight="0.32912722" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32912722" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.2498618" />
@@ -269,7 +262,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="0.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.8" />
+    <MESSAGE value="A lot of changes added, main current issue, is that there are no investigation after obstacle adding" />
+    <option name="LAST_COMMIT_MESSAGE" value="A lot of changes added, main current issue, is that there are no investigation after obstacle adding" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/client.py">
@@ -299,10 +293,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/vide.yaml">
+    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        <state relative-caret-position="11445">
+          <caret line="764" selection-start-line="764" selection-end-line="764" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/impl/tcpros_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11700">
+          <caret line="800" column="35" selection-start-line="800" selection-start-column="35" selection-end-line="800" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -313,38 +314,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/vide.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/queue.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="764" selection-start-line="764" selection-end-line="764" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/impl/tcpros_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="800" column="35" lean-forward="true" selection-start-line="800" selection-start-column="35" selection-end-line="800" selection-end-column="35" />
+        <state relative-caret-position="230">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="347">
+          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/d_star_lite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="126" column="18" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="18" />
+        <state relative-caret-position="245">
+          <caret line="219" column="107" selection-start-line="219" selection-start-column="107" selection-end-line="219" selection-end-column="107" />
           <folding>
             <element signature="e#47#65#0" expanded="true" />
           </folding>

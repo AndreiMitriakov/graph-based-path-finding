@@ -35,6 +35,7 @@ class LPAstar:
         # Map in undirected graph form, defined latter
         self.graph = None
         self.pnts = 0
+        self.passed_nodes = []
         self.nmb_received_maps = 0
         self.map = OccupancyGrid()
         self.map_prev = OccupancyGrid()
@@ -43,7 +44,8 @@ class LPAstar:
         self.pub_markers = rospy.Publisher('/markers', MarkerArray, queue_size=10)
         self.mid = 0
         self.color = {'start': ColorRGBA(0, 1, 0, 1), 'goal': ColorRGBA(1, 0, 0, 1), 'usual': ColorRGBA(0, 0, 1, 1),
-                      'current': ColorRGBA(0.5, 0, 0.5, 1), 'path': ColorRGBA(0, 0.5, 0.5, 1)}
+                      'current': ColorRGBA(0.5, 0, 0.5, 1), 'path': ColorRGBA(0, 0.5, 0.5, 1),
+                      'deprecated': ColorRGBA(0.5, 0.5, 0.5, 1)}
 
     def initialize(self):
         '''
@@ -54,12 +56,12 @@ class LPAstar:
         # adding start and goals nodes to visualization marker list
         priority = self.calculate_key(node_start)
         # No need to set predecessor     
-        self.queue.insert(node_start, priority)
+        self.queue.insert(node_start, priority, self.graph, type=False)
         self.add_marker(self.graph[self.start.w][self.start.h], 'start')
         self.add_marker(self.graph[self.goal.w][self.goal.h], 'goal')
 
     def calculate_key(self, node):
-        return (min(node.g, node.rhs)+node.get_heuristic(), min(node.g, node.rhs))
+        return min(node.g, node.rhs)+node.get_heuristic(), min(node.g, node.rhs)
 
     def get_path(self):
         '''
@@ -77,7 +79,6 @@ class LPAstar:
                 self.change_color(node, 'start')
             else:
                 break
-        print nds
         self.change_color(self.start_node, 'start')
         self.change_color(self.goal_node, 'goal')
         self.pub_markers.publish(self.marker_array)
@@ -86,22 +87,17 @@ class LPAstar:
         '''
         Implementation of Main() from LPA*
         '''
+        print 'Calculating path'
         self.initialize()
+        self.prev_goal_node = copy.deepcopy(self.goal_node)
         i = 0
         while True:
             self.compute_shortest_path()
             path = self.get_path()
-            # In future, update_map has to be called only after new map receiving
-            # A while loop should be implemented exiting from itself when dsl.process_map callback called
-            # while self.nothing_new:
-            #   time.sleep(1)
-            # self.nothing_new = True # self.nothing_new = False in dsl.process_map()
             while self.map_prev.header.stamp.secs == self.map.header.stamp.secs:
                 time.sleep(1)
             changed_nodes = self.update_map()
-            # Changed nodes consist of nodes around appeared obstacle.
-            # Nodes located in the place of new obstacle are dropped from markers and not updated
-            # If obstacle disappears map is updated nodes around obstacle are also added to be updated.
+            time.sleep(3)
             for node in changed_nodes:
                 self.update_node(node, type='update')
             i += 1
@@ -114,14 +110,16 @@ class LPAstar:
         it is (re-)inserted into the queue with its new key.
         Updating not start node.
         '''
-        if node.w != self.start.w or node.h != self.start.h:
+        if node.w == self.start.w and node.h == self.start.h:
+            pass
+        else:
             node.rhs = np.inf
             for predecessor in node.get_predecessors():
                 node.rhs = min(node.rhs, predecessor.g + predecessor.get_cost_to(node))
             if self.queue.contains(node):
                 self.queue.remove(node)
             if node.g != node.rhs:
-                self.queue.insert(node, self.calculate_key(node))
+                self.queue.insert(node, self.calculate_key(node), self.graph)
                 self.add_marker(node)
 
     def update_map(self):
@@ -154,14 +152,20 @@ class LPAstar:
                 for pred in node.get_predecessors():
                     if pred not in nodes:
                         nodes.append(pred)
+            # rhs values are updated
+
+        self.pub_markers.publish(self.marker_array)
         return nodes
 
     def compute_shortest_path(self):
-        goal_node = self.graph[self.goal.w][self.goal.h]
+        self.goal_node = self.graph[self.goal.w][self.goal.h]
         cnt = 0
-        while self.queue.get_top_key() < self.calculate_key(goal_node) or goal_node.rhs != goal_node.g:
+        prev_node = None
+        self.turn_off_mrks()
+        while self.queue.get_top_key() < self.calculate_key(self.goal_node) or self.goal_node.rhs != self.goal_node.g:
             cnt += 1
             node = self.queue.pop()
+            self.passed_nodes.append(node)
             self.change_color(node, 'current')
             if node.g > node.rhs:
                 node.g = node.rhs # Start 0, 0
@@ -172,7 +176,8 @@ class LPAstar:
                 self.update_node(node)
                 for successor in node.get_successors(self.graph):
                     self.update_node(successor)
-            # self.pub_markers.publish(self.marker_array)
+            ####
+            self.pub_markers.publish(self.marker_array)
             self.change_color(node, 'usual')
 
     def change_color(self, node, clr):
@@ -180,6 +185,10 @@ class LPAstar:
             if node.id == marker.id:
                 marker.color = self.color[clr]
 
+    def turn_off_mrks(self):
+        for mrk in self.marker_array.markers:
+            if mrk.color != self.color['goal']:
+                mrk.color = self.color['deprecated']
 
     def prepare_map(self, map_):
         '''
@@ -193,7 +202,8 @@ class LPAstar:
             line= []
             for h in range(map_.info.height):
                 i += 1
-                node = Node(prob=map_.data[w+h*map_.info.width-1], g=np.inf, rhs=np.inf, w=w, h=h, goal=self.goal)
+                node = Node(prob=map_.data[w+h*map_.info.width-1], g=np.inf, rhs=np.inf, w=w, h=h, goal=self.goal,
+                            start=self.start)
                 line.append(node)
             graph.append(line)
         graph = np.array(graph)
@@ -207,11 +217,12 @@ class LPAstar:
         if self.nmb_received_maps == 0:
             self.map = map_
             self.map_prev = copy.deepcopy(map_)
-            self.start = self.position(w=int(self.map.info.width * 0.31), h=int(self.map.info.height * 0.49))
-            self.goal = self.position(w=int(self.map.info.width * 0.46), h=int(self.map.info.height * 0.49))
+            self.start = self.position(w=int(self.map.info.width * 0.35), h=int(self.map.info.height * 0.49K))
+            self.goal = self.position(w=int(self.map.info.width * 0.5), h=int(self.map.info.height * 0.49))
             self.graph = self.prepare_map(map_)
             self.start_node = self.graph[self.start.w][self.start.h]
             self.goal_node = self.graph[self.goal.w][self.goal.h]
+            self.nmb_received_maps = 1
             self.calculate_path()
         else:
             self.map = map_
@@ -240,7 +251,7 @@ class LPAstar:
             mk.pose.orientation.z = 0
             mk.pose.orientation.w = 1
             mk.scale = Vector3(self.map.info.resolution * 2, self.map.info.resolution * 2, self.map.info.resolution * 2)
-            mk.lifetime = rospy.Duration(5)
+            mk.lifetime = rospy.Duration(15)
             mk.color = self.color[type]
             self.marker_array.markers.append(mk)
 

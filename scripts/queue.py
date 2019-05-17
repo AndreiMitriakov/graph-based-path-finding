@@ -37,7 +37,7 @@ class PriorityQueue:
     def _sort(self):
         self.queue = sorted(self.queue, key=lambda node: (node.priority[0], node.priority[1]))
 
-    def insert(self, node, priority):
+    def insert(self, node, priority, graph, type=True):
         '''
         inserts a node with a given priority into the queue
         '''

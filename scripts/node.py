@@ -1,8 +1,9 @@
 import numpy as np
 
 class Node:
-    def __init__(self, w, h, prob, rhs, g, goal):
+    def __init__(self, w, h, prob, rhs, g, start, goal):
         self.goal = goal
+        self.start = start
         zero_line = {1: '00', 2: '0', 3: ''}
         self.id = int(str(w) + zero_line[len(str(h))] + str(h))
         self.w = w
@@ -30,7 +31,7 @@ class Node:
         Set successors for a node.
         Return successor nodes.
         Append the current node as a parent to successor nodes.
-        '''
+
         i = 0
         if self.succ_set == False:
             for step in self.steps:
@@ -43,7 +44,19 @@ class Node:
             self.succ_set = True
             return self.succ
         else:
+        '''
+        if self.succ_set == False:
+            self.set_ps(graph)
+            self.succ_set = True
             return self.succ
+        else:
+            return self.succ
+
+    def set_ps(self, graph):
+        for step in self.steps:
+            node = graph[self.w + step[0]][self.h + step[1]]
+            self.succ.append(node)
+            node.pred.append(self)
 
     def get_predecessors(self):
         return self.pred
