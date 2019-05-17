@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a51cf053-3280-4124-9479-8237c0d2724e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launch/dstar.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/dstar.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.xml" beforeDir="false" afterPath="$PROJECT_DIR$/package.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/d_star_lite.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/d_star_lite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/node.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/include/python2.7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/encodings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/lib-dynload" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/d_star_lite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="219" column="107" selection-start-line="219" selection-start-column="107" selection-end-line="219" selection-end-column="107" />
+            <state relative-caret-position="290">
+              <caret line="222" column="68" selection-start-line="222" selection-start-column="68" selection-end-line="222" selection-end-column="68" />
               <folding>
                 <element signature="e#47#65#0" expanded="true" />
               </folding>
@@ -35,21 +31,8 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/queue.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/node.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/data/full.pgm">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -121,43 +104,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="d_star_lite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="d_star_lite" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="d_star_lite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="d_star_lite" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="d_star_lite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="d_star_lite" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="d_star_lite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="d_star_lite" type="462c0819:PsiDirectoryNode" />
-              <item name="launch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="d_star_lite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="d_star_lite" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="/bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -225,7 +178,21 @@
       <option name="project" value="LOCAL" />
       <updated>1558023393188</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Finished version of LPA*">
+      <created>1558098631913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558098631913</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Map with obstacle is added">
+      <created>1558098712217</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1558098712217</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -241,12 +208,12 @@
     <frame x="1979" y="-4" width="1621" height="1054" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65891474" visible="true" weight="0.17021276" />
-      <window_info id="Structure" order="1" sideWeight="0.34108528" side_tool="true" visible="true" weight="0.17021276" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65720296" visible="true" weight="0.17021276" />
+      <window_info id="Structure" order="1" sideWeight="0.34279704" side_tool="true" visible="true" weight="0.17021276" />
       <window_info id="Favorites" order="2" sideWeight="0.34136546" side_tool="true" weight="0.17021276" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18611987" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18611987" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.24921136" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -263,7 +230,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="0.8" />
     <MESSAGE value="A lot of changes added, main current issue, is that there are no investigation after obstacle adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="A lot of changes added, main current issue, is that there are no investigation after obstacle adding" />
+    <MESSAGE value="Finished version of LPA*" />
+    <MESSAGE value="Map with obstacle is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Map with obstacle is added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/client.py">
@@ -276,9 +245,6 @@
     <entry file="file://$PROJECT_DIR$/scripts/marker.py" />
     <entry file="file://$PROJECT_DIR$/data/kth_y2_floorsix_full-update.yaml" />
     <entry file="file://$PROJECT_DIR$/data/kth_y2_floorsix_full-update.pgm" />
-    <entry file="file://$PROJECT_DIR$/data/vide.pgm">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/slides.rviz">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
@@ -307,20 +273,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/full.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/vide.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/queue.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -335,15 +287,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/vide.pgm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vide.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/full.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/d_star_lite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="219" column="107" selection-start-line="219" selection-start-column="107" selection-end-line="219" selection-end-column="107" />
+        <state relative-caret-position="290">
+          <caret line="222" column="68" selection-start-line="222" selection-start-column="68" selection-end-line="222" selection-end-column="68" />
           <folding>
             <element signature="e#47#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/full.pgm">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
