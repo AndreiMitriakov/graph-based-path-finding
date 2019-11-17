@@ -1,2 +1,2 @@
-# graph-based-path-finding
-D* Lite implementation
+# Navigation algorithms
+This repo consists of D* Lite implementation.
